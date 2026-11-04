@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import TeamMemberCard from "@/components/TeamMemberCard";
 
 const divisions = [
   {
@@ -29,6 +30,41 @@ const leaders = [
   { name: "Eunice Monzón", role: "Outreach Lead" },
   { name: "Raul Torres", role: "Mentor" },
 ];
+
+
+const teamGroups = [
+  {
+    title: "MCE Leadership",
+    division: "MCE",
+    color: "text-green-400",
+    members: leaders.filter((leader) =>
+      [
+        "MCE Captain",
+        "MCE Vice-Captain",
+        "Treasurer",
+        "Outreach Lead",
+        "Mentor",
+      ].includes(leader.role)
+    ),
+  },
+  {
+    title: "VEX Robotics",
+    division: "VEX",
+    color: "text-red-400",
+    members: leaders.filter((leader) =>
+      leader.role.startsWith("VEX")
+    ),
+  },
+  {
+    title: "RR&D",
+    division: "RR&D",
+    color: "text-purple-400",
+    members: leaders.filter(
+      (leader) => leader.role.includes("RR&D")
+    ),
+  },
+];
+
 
 const projects = [
   {
@@ -377,46 +413,48 @@ export default function Home() {
         </div>
       </section>
 
+      
       {/* TEAM */}
-      <section id="team" className="border-y border-white/10 bg-zinc-950">
+      <section
+        id="team"
+        className="border-y border-white/10 bg-zinc-950"
+      >
         <div className="mx-auto max-w-7xl px-6 py-20">
           <p className="text-xs font-bold uppercase tracking-[0.3em] text-green-400">
             Our Team
           </p>
+
           <h2 className="mt-3 text-3xl font-bold sm:text-4xl">
-            The people behind <span className="text-green-400">MCE.</span>
+            The people behind{" "}
+            <span className="text-green-400">MCE.</span>
           </h2>
+
           <p className="mt-5 max-w-3xl leading-7 text-zinc-400">
-            MCE includes 32 active members across VEX and RR&D, according to
-            the information currently provided by the team. Meet the
-            leadership and mentor supporting our work.
+            MCE brings together 32 active members across VEX and RR&D.
+            Meet the leadership and mentor supporting our team.
           </p>
 
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {leaders.map((leader) => (
-              <article
-                key={leader.name}
-                className="rounded-xl border border-white/10 bg-black p-5 transition hover:border-green-500/60"
-              >
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full border border-green-500/50 bg-green-500/10 text-lg font-bold text-green-400">
-                  {leader.name
-                    .split(" ")
-                    .map((part) => part[0])
-                    .slice(0, 2)
-                    .join("")}
-                </div>
-                <h3 className="font-bold">{leader.name}</h3>
-                <p className="mt-2 text-sm text-zinc-400">{leader.role}</p>
-              </article>
-            ))}
-          </div>
+          {teamGroups.map((group) => (
+            <div key={group.title} className="mt-14">
+              <h3 className={`text-2xl font-bold ${group.color}`}>
+                {group.title}
+              </h3>
 
-          <p className="mt-6 text-sm text-zinc-500">
-            Member photos, degree programs, subdivisions, and individual
-            profiles can be added when the information is confirmed.
-          </p>
+              <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {group.members.map((member) => (
+                  <TeamMemberCard
+                    key={`${group.division}-${member.name}`}
+                    name={member.name}
+                    role={member.role}
+                    division={group.division}
+                  />
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </section>
+
 
       {/* JOIN MCE */}
       <section id="join" className="mx-auto max-w-5xl px-6 py-20 text-center">
