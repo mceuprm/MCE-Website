@@ -164,47 +164,69 @@ export default function Home() {
         </div>
       </section>
 
-      {/* DIVISIONS */}
-      <section id="divisions" className="mx-auto max-w-7xl px-6 py-20">
-        <p className="text-xs font-bold uppercase tracking-[0.3em] text-green-400">
-          Our Divisions
-        </p>
-        <h2 className="mt-3 text-3xl font-bold sm:text-4xl">
-          Explore MCE <span className="text-green-400">divisions.</span>
-        </h2>
+      
+    {/* DIVISIONS */}
+    <section id="divisions" className="mx-auto max-w-7xl px-6 py-20">
+      <p className="text-xs font-bold uppercase tracking-[0.3em] text-green-400">
+        Our Divisions
+      </p>
 
-        <div className="mt-10 grid gap-6 md:grid-cols-2">
-          {divisions.map((division) => (
-            <article
-              key={division.name}
-              className="rounded-2xl border border-white/10 bg-zinc-950 p-7 transition hover:-translate-y-1 hover:border-green-500/60"
+      <h2 className="mt-3 text-3xl font-bold sm:text-4xl">
+        Explore MCE <span className="text-green-400">divisions.</span>
+      </h2>
+
+      <div className="mt-10 grid gap-6 md:grid-cols-2">
+        {divisions.map((division) => (
+          <article
+            key={division.name}
+            className={`rounded-2xl border border-white/10 bg-zinc-950 p-7 transition hover:-translate-y-1 ${
+              division.name === "VEX"
+                ? "hover:border-red-500/60"
+                : "hover:border-purple-500/60"
+            }`}
+          >
+            <p
+              className={`text-xs font-bold tracking-widest ${
+                division.name === "VEX"
+                  ? "text-red-400"
+                  : "text-purple-400"
+              }`}
             >
-              <p className="text-xs font-bold tracking-widest text-green-400">
-                {division.category}
-              </p>
-              <h3 className="mt-3 text-2xl font-bold">{division.name}</h3>
-              <p className="mt-4 leading-7 text-zinc-400">
-                {division.description}
-              </p>
-              <a
-                href={division.href}
-                className="mt-6 inline-block text-sm font-bold text-green-400 hover:underline"
-              >
-                Explore {division.name} ↗
-              </a>
-            </article>
-          ))}
-        </div>
-      </section>
+              {division.category}
+            </p>
+
+            <h3 className="mt-3 text-2xl font-bold">
+              {division.name}
+            </h3>
+
+            <p className="mt-4 leading-7 text-zinc-400">
+              {division.description}
+            </p>
+
+            <a
+              href={division.href}
+              className={`mt-6 inline-block text-sm font-bold hover:underline ${
+                division.name === "VEX"
+                  ? "text-red-400"
+                  : "text-purple-400"
+              }`}
+            >
+              Explore {division.name} ↗
+            </a>
+          </article>
+        ))}
+      </div>
+    </section>
+
 
       {/* VEX */}
       <section id="vex" className="border-y border-white/10 bg-zinc-950">
         <div className="mx-auto max-w-7xl px-6 py-20">
-          <p className="text-xs font-bold uppercase tracking-[0.3em] text-green-400">
+          <p className="text-xs font-bold uppercase tracking-[0.3em] text-red-400">
             Competitive Robotics
           </p>
           <h2 className="mt-3 text-3xl font-bold sm:text-4xl">
-            VEX Robotics <span className="text-green-400">at MCE.</span>
+            VEX Robotics <span className="text-red-400">at MCE.</span>
           </h2>
           <p className="mt-5 max-w-3xl leading-7 text-zinc-400">
             Our VEX division brings together students interested in robotics,
@@ -231,7 +253,7 @@ export default function Home() {
                 href="https://www.vexrobotics.com/v5/competition/vrc-current-game"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-5 inline-block text-sm font-bold text-green-400 hover:underline"
+                className="mt-5 inline-block text-sm font-bold text-red-400 hover:underline"
               >
                 View the official VEX game ↗
               </a>
@@ -258,7 +280,7 @@ export default function Home() {
           </div>
 
           <div className="mt-12 rounded-2xl border border-white/10 bg-black p-6">
-            <p className="text-xs font-bold uppercase tracking-widest text-green-400">
+            <p className="text-xs font-bold uppercase tracking-widest text-red-400">
               Competition History
             </p>
             <h3 className="mt-3 text-2xl font-bold">Our Journey</h3>
@@ -275,12 +297,12 @@ export default function Home() {
 
       {/* RR&D */}
       <section id="rrd" className="mx-auto max-w-7xl px-6 py-20">
-        <p className="text-xs font-bold uppercase tracking-[0.3em] text-green-400">
+        <p className="text-xs font-bold uppercase tracking-[0.3em] text-purple-400">
           Robotics Research & Development
         </p>
         <h2 className="mt-3 text-3xl font-bold sm:text-4xl">
           Exploring the potential of{" "}
-          <span className="text-green-400">robotics.</span>
+          <span className="text-purple-400">robotics.</span>
         </h2>
         <p className="mt-5 max-w-3xl leading-7 text-zinc-400">
           RR&D focuses on research, design, and development. Its projects
@@ -290,7 +312,7 @@ export default function Home() {
         </p>
 
         <div className="mt-10">
-          <p className="text-xs font-bold uppercase tracking-widest text-green-400">
+          <p className="text-xs font-bold uppercase tracking-widest text-purple-400">
             Projects
           </p>
           <h3 className="mt-3 text-2xl font-bold">Robotic Companions</h3>
@@ -304,9 +326,9 @@ export default function Home() {
             {projects.map((project) => (
               <article
                 key={project.name}
-                className="rounded-2xl border border-white/10 bg-zinc-950 p-6 transition hover:border-green-500/50"
+                className="rounded-2xl border border-white/10 bg-zinc-950 p-6 transition hover:border-purple-500/50"
               >
-                <p className="text-xs font-bold tracking-widest text-green-400">
+                <p className="text-xs font-bold tracking-widest text-purple-400">
                   {project.category}
                 </p>
                 <h4 className="mt-3 text-2xl font-bold">{project.name}</h4>
@@ -319,18 +341,18 @@ export default function Home() {
         </div>
 
         <div className="mt-12">
-          <p className="text-xs font-bold uppercase tracking-widest text-green-400">
+          <p className="text-xs font-bold uppercase tracking-widest text-purple-400">
             RR&D Divisions
           </p>
           <h3 className="mt-3 text-2xl font-bold">
             Different disciplines.{" "}
-            <span className="text-green-400">One system.</span>
+            <span className="text-purple-400">One system.</span>
           </h3>
           <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
             {disciplines.map((discipline) => (
               <div
                 key={discipline}
-                className="rounded-lg border border-white/10 bg-zinc-950 p-4 text-sm font-semibold transition hover:border-green-500/60 hover:text-green-400"
+                className="rounded-lg border border-white/10 bg-zinc-950 p-4 text-sm font-semibold transition hover:border-purple-500/60 hover:text-purple-400"
               >
                 {discipline}
               </div>
@@ -339,7 +361,7 @@ export default function Home() {
         </div>
 
         <div className="mt-12 rounded-2xl border border-white/10 bg-zinc-950 p-6">
-          <p className="text-xs font-bold uppercase tracking-widest text-green-400">
+          <p className="text-xs font-bold uppercase tracking-widest text-purple-400">
             Research Poster
           </p>
           <h3 className="mt-3 text-2xl font-bold">M.I.T.C.H.</h3>
